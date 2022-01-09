@@ -56,9 +56,26 @@ function render(response) {
 
     for (let i = 0; i < response.length; i ++) {
         let task = response[i];
+        let done = task.complete
+        if (done === true) {
+            $('#taskList').append(`
+            <tr data-id="${task.id}" data-completed="${task.complete}" class="list">
+
+                <td>${task.task}</td>
+                <td>
+                    <select id="selector">
+                        <option value="delete" data-rc="delete"> delete </option>
+                </td>
+                <td>
+                    <button class="updated"> update </button>
+                </td>
+            </tr>
+        `);
+        }
+        else{
         $('#taskList').append(`
-            <tr data-id="${task.id}" data-completed="${task.completed}">
-                
+            <tr data-id="${task.id}" data-completed="${task.complete}">
+
                 <td>${task.task}</td>
                 <td>
                     <select id="selector">
@@ -72,6 +89,7 @@ function render(response) {
                 </td>
             </tr>
         `);
+        }
     }
 }
 
@@ -100,7 +118,7 @@ function updateTask(taskId, taskCompleted) {
     $.ajax({
         method: 'PUT',
         url: `/to-do/${taskId}`,
-        data: { completed: taskCompleted }
+        data: { completed: taskCompleted = true }
     })
         .then(() => {
             console.log('ajax PUT task:', taskId, taskCompleted);

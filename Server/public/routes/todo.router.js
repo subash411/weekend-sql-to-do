@@ -52,7 +52,7 @@ taskRouter.put('/:taskId', (req, res) => {
 
     let queryText = `
         UPDATE "checklist"
-        SET "completed" = $1
+        SET "complete" = $1
         WHERE "id" = $2;
     `;
 

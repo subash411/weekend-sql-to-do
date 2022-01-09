@@ -7,7 +7,15 @@ text-align: center;
 #taskTable{
     margin: auto;
     width: 400px;
+    
 }
 body{
-    background-color: rgb(90, 116, 138);
+    background-image: url("https://archive-media-2.nyafuu.org/wg/image/1458/92/1458926598053.gif");
+    font-family: 'Vujahday Script', cursive;
+    font-size: xx-large;
+    color: aquamarine;
+}
+
+.list {
+    background-color: green !important;
 }
