@@ -14,15 +14,15 @@ taskRouter.get('/', (req, res ) => {
             // send data back to the client
             res.send(dbRes.rows);
         })
-        .catch((err) => {
-            console.log('GET failed!', err);
+        .catch((error) => {
+            console.log('unable to load GET!', error);
             res.sendStatus(500);
         });
 });
 
 //POST
 taskRouter.post('/', (req, res) =>{
-    console.log('sent:', req.body);
+    console.log(req.body);
     let queryText = `
     INSERT INTO "checklist"
     ("task")
@@ -30,17 +30,17 @@ taskRouter.post('/', (req, res) =>{
     ($1);
     
     `;
-
-    pool.queryParams = [
+    let queryParams = [
         req.body.task
     ];
+
 
     pool.query(queryText, queryParams)
     .then((dbRes) => {
         res.sendStatus(201);
     })
     .catch((error) =>{
-        console.log('POST failed', error);
+        console.log('unable to load POST', error);
         res.sendStatus(500);
     });
 });
@@ -91,9 +91,8 @@ taskRouter.delete('/:taskId', (req, res) => {
         
             res.sendStatus(201);
         })
-        .catch((err) => {
-            console.log('DELETE failed');
-        
+        .catch((error) => {
+            console.log('unable to load DELETE', error);
             res.sendStatus(500);
         });
 });

@@ -1,0 +1,13 @@
+h1{
+    text-align: center;
+}
+.taskInputArea{
+text-align: center;
+}
+#taskTable{
+    margin: auto;
+    width: 400px;
+}
+body{
+    background-color: rgb(90, 116, 138);
+}
